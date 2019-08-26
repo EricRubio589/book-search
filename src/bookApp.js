@@ -1,12 +1,14 @@
 import React from 'react';
+import Header from './header';
 
-function BookApp() {
+class BookApp extends React.Component {
+  render() {
   return (
     <main className='bookApp'>
-        <h1>Super Hello There!</h1>
-      <p>Hello there!</p>
+        <Header />
     </main>
   );
+  }
 }
 
 export default BookApp;
