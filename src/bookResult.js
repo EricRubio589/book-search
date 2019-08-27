@@ -1,9 +1,9 @@
 import React from 'react';
 
-function BookResult() {
+function BookResult(props) {
     return (
         <div>
-
+            <p>{props.title}</p>
         </div>
     )
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './header';
-
+import ResultsList from './resultsList';
 
 const url = `https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyAYOS5NQVTj3USuL4mhtaqSWs8W2kHnxLE`;
 const key = 'AIzaSyAYOS5NQVTj3USuL4mhtaqSWs8W2kHnxLE';
-var titles = [];
+const titles = [];
 
 class BookApp extends React.Component {
 
@@ -12,7 +12,7 @@ class BookApp extends React.Component {
     super(props);
     this.state = {
       data: [],
-      publishers: []
+      searchTerm: null,
     };
   }
 
@@ -27,11 +27,7 @@ class BookApp extends React.Component {
       // .then(responseJson => responseJson.map(res) this.setState({ data: responseJson.items[3].volumeInfo.title}))  
       // .then(responseJson => this.setState({data: responseJson}))
       .then(responseJson => {
-        const titles = []
-        for (let i=0; i < Object.keys(responseJson.items).length; i++) {
-          titles.push(responseJson.items[i].id)
-          console.log(responseJson.items[i].volumeInfo.title)
-        }
+        this.setState({data:responseJson.items.map(item=>item.volumeInfo.title)})
       })
     }
 
@@ -39,8 +35,8 @@ class BookApp extends React.Component {
   return (
     <main className='bookApp'>
         <Header />
-        <p>{titles}</p>
-        {console.log({titles})}
+        <p>{this.state.data.length}</p>
+        <ResultsList titles={this.state.data}/>
     </main>
   );
   }

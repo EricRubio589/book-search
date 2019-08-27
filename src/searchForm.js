@@ -5,6 +5,7 @@ function SearchForm() {
         <div>
             <p>Search Here:</p>
             <input></input>
+            <button>Search</button>
         </div>
     )
 }
