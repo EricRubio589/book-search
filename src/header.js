@@ -1,12 +1,12 @@
 import React from 'react';
-import ResultsList from './resultsList'
+import SearchForm from './searchForm';
 
 
 function Header() {
     return (
         <div>
             <h1>Google Book Search</h1>
-            <ResultsList />
+            <SearchForm />
 
         </div>
     )
