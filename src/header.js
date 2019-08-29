@@ -2,11 +2,11 @@ import React from 'react';
 import SearchForm from './searchForm';
 
 
-function Header() {
+function Header(props) {
     return (
         <div>
             <h1>Google Book Search</h1>
-            <SearchForm />
+            <SearchForm setSearchTerm={props.setSearchTerm}/>
 
         </div>
     )

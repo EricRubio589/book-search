@@ -1,13 +1,29 @@
 import React from 'react';
 
-function SearchForm() {
-    return (
-        <div>
-            <p>Search Here:</p>
-            <input></input>
-            <button>Search</button>
-        </div>
-    )
+class SearchForm extends React.Component {
+    
+
+    // buttonWasClicked () {
+    //     event.preventDefault();
+    //     const {}
+    // }
+
+    onSubmitForm = (event) => {
+        event.preventDefault();
+        this.props.setSearchTerm(event.target.itemToAdd.value)
+    }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.onSubmitForm}>
+                    <p>Search Here:</p>
+                    <input name='itemToAdd'></input>
+                    <button type='submit'>Search</button>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default SearchForm;
