@@ -9,18 +9,18 @@ class BookApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      titles: [],
-      authors: []
+      data: []
     };
   }
   
-  setSearchTerm = (term) => {
+  setSearchTerm = (term, printType) => {
     console.log(this.state.searchTerm)
-    this.fetchData(term)
+    this.fetchData(term, printType)
+
   }  
 
-  fetchData = (term) => {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${term}&key=${key}`;
+  fetchData = (term, printType) => {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${term}&printType=${printType}&key=${key}`;
     fetch(url).then(response => {
       if(!response.ok) {
         throw new Error('Oops, there seems to be a problem fetching from the server')
@@ -29,10 +29,7 @@ class BookApp extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        this.setState({titles:responseJson.items.map(item=>item.volumeInfo.title)})
-      })
-      .then(responseJson => {
-        this.setState({authors:responseJson.items.map(item=>item.volumenInfo.authors)})
+        this.setState({data:responseJson})
       })
     }
 
@@ -41,11 +38,9 @@ class BookApp extends React.Component {
   return (
     <main className='bookApp'>
         <Header setSearchTerm={this.setSearchTerm}/>
-        <p>{this.state.titles.length}</p>
-        <ResultsList 
-        titles={this.state.titles}
-        authors={this.state.authors}/>
-        {console.log(this.data)}
+        <ResultsList
+          data={this.state.data} 
+        />
     </main>
   );
   }

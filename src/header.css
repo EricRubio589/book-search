@@ -1,0 +1,10 @@
+.mainBanner {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 150px;
+    font-size: 30px;
+}
